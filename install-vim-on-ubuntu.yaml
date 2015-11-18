@@ -1,0 +1,23 @@
+---
+- hosts: targets
+  vars:
+    my_vim_config_git: https://github.com/efoley/dotvim.git
+  remote_user: efoley
+  tasks:
+  - name: install vim
+    apt: name=vim
+    become: yes
+  - name: install git
+    apt: name=git
+    become: yes
+  - name: download efoley's vim config
+    git: repo=https://github.com/efoley/dotvim.git
+         dest=~/.vim
+  - name: create symbolic link to vimrc file
+    file: src=~/.vim/vimrc dest=~/.vimrc state=link
+  - name: git clone Vundle into ~/.vim/bundle
+    git: repo=https://github.com/VundleVim/Vundle.vim.git
+         dest=~/.vim/bundle/Vundle.vim
+  - name: run Vim to install plugins
+    shell: vim +PluginInstall +qall
+    
