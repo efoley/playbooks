@@ -1,1 +1,6 @@
 Miscellaneous Ansible playbooks.
+
+To use these on the local machine:
+
+efoley@foo$ echo "localhost   ansible_connection=local" > ansible_hosts
+efoley@foo$ ansible-playbook playbooks/install-vim-on-ubuntu.yaml --ask-become-pass
