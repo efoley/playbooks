@@ -1,5 +1,5 @@
 ---
-- hosts: targets
+- hosts: localhost
   vars:
     my_vim_config_git: https://github.com/efoley/dotvim.git
   remote_user: efoley
