@@ -1,0 +1,35 @@
+
+- hosts: localhost
+  remote_user: efoley
+  tasks:
+  - name: install g++
+    apt: name=g++
+    become: yes
+  - name: install openblas
+    apt: name=libopenblas-dev
+    become: yes
+  - name: install scipy & numpy
+    apt: name={{item}}
+    become: yes
+    with_items:
+      - python-numpy
+      - python-scipy
+      - python-dev
+      - python-pip
+      - python-nose
+      - python-matplotlib
+  - name: install Theano
+    pip: name=Theano
+    become: yes
+  - name: install IPython
+    apt: name=ipython
+    become: yes
+  - name: install HDF5 (for Keras)
+    apt: name=libhdf5-10
+    become: yes
+  - name: install pyyaml (for Keras)
+    pip: name=pyyaml
+    become: yes
+  - name: install Keras
+    pip: name=keras
+    become: yes 
